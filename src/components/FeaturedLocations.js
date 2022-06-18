@@ -19,15 +19,15 @@ const FeaturedLocations = (props) => {
         <section>
             <div style={style}>
                 <Typography variant="h2" color="textPrimary" align="center">Featured Locations</Typography>
-                <div>
+                {/* <div>
                     <Grid container spacing={2}>
-                        <Grid item xs={3}>
+                        <Grid it>
                             <frame>
                                 <img/>
                             </frame>
                         </Grid>
                     </Grid>
-                </div>
+                </div> */}
             </div>
         </section>
     );

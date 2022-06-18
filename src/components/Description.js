@@ -11,7 +11,7 @@ const Description = (props) => {
     const theme = useTheme()
 
     const style = {
-        padding : '72px 0 72px 0' ,
+        padding : '64px 0 72px 0' ,
         // maxHeight : "100vh"
     }
     return (
@@ -20,7 +20,7 @@ const Description = (props) => {
                 <Box m={5}/>
                 <Divider color={theme.palette.primary.main}/>
                 <Box m={5}/>
-                <Typography align="center" variant="body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                <Typography align="center" >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor<br/>incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud </Typography>
                 <Box m={12}/>
@@ -29,7 +29,7 @@ const Description = (props) => {
                         <Grid item xs={4}>
                             <img src={suitecaseIcon}/>
                             <Box m={4}/>
-                            <Typography variant="body2">
+                            <Typography >
                                 Lorem ipsum dolor sit amet,
                                 consectetur adipiscing elit,
                                 sed do eiusmod tempor incididunt
@@ -43,7 +43,7 @@ const Description = (props) => {
                         <Grid item xs={4}>
                             <img src={vanIcon}/>
                             <Box m={4}/>
-                            <Typography variant="body2">
+                            <Typography >
                                 Lorem ipsum dolor sit amet,
                                 consectetur adipiscing elit,
                                 sed do eiusmod tempor incididunt
@@ -57,7 +57,7 @@ const Description = (props) => {
                         <Grid item xs={4}>
                             <img src={globeIcon}/>
                             <Box m={4}/>
-                            <Typography variant="body2">
+                            <Typography >
                                 Lorem ipsum dolor sit amet,
                                 consectetur adipiscing elit,
                                 sed do eiusmod tempor incididunt

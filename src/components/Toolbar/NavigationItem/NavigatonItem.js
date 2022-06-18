@@ -1,46 +1,55 @@
-import { Typography,Box, Button } from '@material-ui/core';
-import React from 'react';
+import { Typography, Button } from '@material-ui/core';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
-import axios from 'axios'
+import { NavLink, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useTheme } from '@material-ui/core/styles'
+import { logout } from '../../../store/login/reducer'
 
 const useStyles = makeStyles({
     button: {
-      textTransform: "none"
+        textTransform: "none"
     }
-  });
+});
 
 const NavigatonItem = (props) => {
+    const dispatch = useDispatch()
 
-      const classes = useStyles();
+    const theme = useTheme()
 
-    //   const getTrips = ()=>{
-    //     axios.get('localhost:6942',{"username" : "zebi", "passwo" : 's'})
-    //     .then((data)=>{
-    //         setTrips(data.body)
-    //     }).catch(()=>{
-            
-    //     })
-    //   }
+    const classes = useStyles();
+    let activeStyle = {
+        color: theme.palette.text.primary,
+        textDecoration: "none"
+    };
 
     return (
         <li
-        style={{
-            height: "100%",
-            display:'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width : '80px',
-            marginLeft : '16px'}}>
-                {props.children == 'Signup' ? 
-                <Button className={classes.button} variant="contained" color="primary"
-                disableElevation disableFocusRipple>
-                    <Typography variant='body2' align='center'>
+            style={{
+                height: "100%",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minWidth: '80px',
+                marginLeft: '24px',
+                textDecoration: "none"
+            }}>
+            <NavLink
+                onClick={props.children == 'Déconnexion' ? ()=>dispatch(logout()): null}
+                to={props.link}
+                style={activeStyle}
+            >
+                {props.children == 'Connexion' ?
+                    <Button className={classes.button} variant="contained" color="primary"
+                        disableElevation disableFocusRipple>
+                        <Typography align='center'>
+                            {props.children}
+                        </Typography>
+                    </Button> :
+                    <Typography align='center'>
                         {props.children}
-                    </Typography>
-                </Button> : 
-            <Typography variant='body2' align='center'>
-                {props.children}
-            </Typography>}
+                    </Typography>}
+            </NavLink>
         </li>
     );
 };
