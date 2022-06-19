@@ -7,10 +7,10 @@ export const loginSlice = createSlice({
     },
   reducers: {
         adminLogin: (state, _) => {
-            state.loginStatus='admin'
+            state.loginStatus='employé'
         },
         touristLogin: (state, _) => {
-            state.loginStatus='tourist'
+            state.loginStatus='touriste'
         },
         logout: (state, _) => {
             state.loginStatus='disconnected'

@@ -3,7 +3,8 @@ import {
     MenuItem, FormControl, makeStyles, Button,
 } from '@material-ui/core';
 import React, { useState, useRef } from 'react';
-import addPicture from '../assets/images/addpicture.svg'
+import addPicture from '../assets/images/addpicture.svg';
+import ScrollBar from 'react-perfect-scrollbar';
 
 const initialValues = {
     nom: "",
@@ -24,8 +25,10 @@ const Form = (props) => {
                 width: '100%',
                 marginBottom: theme.spacing(1),
             },
-            width: 560,
-            margin: 'auto'
+            width:600,
+            overflowX: "hidden",
+            padding: 48,
+            height: "100%",
         },
     }));
 
@@ -65,9 +68,8 @@ const Form = (props) => {
     }
 
     return (
-        <React.Fragment>
+        <ScrollBar style={{ overflowX: "hidden" }}>
             <form className={classes.root} onSubmit={submitForm}>
-                {/* <ScrollBar> */}
                 <Box m={4} />
                 <Typography variant='h1'>Ajouter un lieu</Typography>
                 <Box m={8} />
@@ -162,10 +164,9 @@ const Form = (props) => {
                     disableElevation disableFocusRipple fullWidth size='large'
                     style={{ height: 56 }}
                     onClick={submitForm}>Ajouter</Button>
-                <Box m={8} />
-                {/* </ScrollBar> */}
+                <Box m={2} />
             </form>
-        </React.Fragment>
+        </ScrollBar>
     );
 };
 

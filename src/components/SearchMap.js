@@ -68,11 +68,15 @@ const SearchMap = () => {
             return true
 
     })
+    const mapRef = React.useRef();
+    const setMapRef = (map) => {
+        mapRef.current = map;
+    }
     return (
         <div style={{ position: "relative" }} >
             <div
                 style={{
-                    width: 800,
+                    width: 704,
                     transform: 'translate(-50%, 0)',
                     padding: 8,
                     borderRadius: 8,
@@ -82,12 +86,14 @@ const SearchMap = () => {
                     left: "50%",
                     backgroundColor: "white"
                 }}>
-                <div style={{display: 'flex',
+                <div style={{
+                    display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'flex-end',}}>
+                    alignItems: 'flex-end',
+                }}>
                     <div style={{ display: "flex", alignItems: 'flex-end', marginRight: 8 }}>
                         {/* <Typography style={{ marginRight: 16, display: 'inline-block', marginBottom: 8 }}>Zone</Typography> */}
-                        <FormControl style={{ width: 136 }}>
+                        <FormControl style={{ width: 120 }}>
                             <Select
                                 margin='dense'
                                 variant="outlined"
@@ -104,8 +110,10 @@ const SearchMap = () => {
                         style={{ display: 'inline-block', }}
                         fullWidth
                         onChange={(_, value) => {
-                            if (value)
+                            if (value){
                                 setSelected(value)
+                                mapRef.current.panTo(value.coordinates)
+                            }
                         }}
                         options={places.filter(place => place.zone === zone)}
                         getOptionLabel={(place) => place.nom ? place.nom : ""}
@@ -119,7 +127,7 @@ const SearchMap = () => {
                         )} />
                     <div style={{ marginLeft: 8 }}>
                         <Button variant='outlined' aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickFilter}
-                            style={{ height: 40, textTransform: "none", width: 136 }}>
+                            style={{ height: 40, textTransform: "none", width: 120 }}>
                             <img src={filterIcon} />
                             <Box mr={2} />
                             <Typography>Filtrer</Typography>
@@ -131,6 +139,8 @@ const SearchMap = () => {
                 </Collapse>
             </div>
             <GMap places={places} zone={maps[zone]}
+                mapRef={mapRef}
+                setMapRef={setMapRef}
                 onAdd={(place) => dispatch(addPlace(place))}
                 isAdmin={login.loginStatus === 'admin'}
                 selected={selected} onSelect={setSelected} />

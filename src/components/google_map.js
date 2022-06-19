@@ -57,9 +57,10 @@ const GMap = (props) => {
         }
     });
 
-    const mapRef = React.useRef();
+    // const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
-        mapRef.current = map;
+        props.setMapRef(map)
+        // mapRef.current = map;
     }, []);
 
     const { isLoaded, loadError } = useLoadScript({
@@ -101,12 +102,12 @@ const GMap = (props) => {
                         rating={selected.rating} image={selected.image} />
                 </div>
                 : null}
-            <Dialog fullScreen open={dialogIsOpen} onClose={handleClickDialogClose}>
+            <Dialog open={dialogIsOpen} onClose={handleClickDialogClose}
+            maxWidth>
                 <IconButton
-                    style={{ position: 'absolute', right: "8px" }}
+                    style={{ position: 'absolute', right: "4px" }}
                     onClick={handleClickDialogClose}>
-                    <img src={closeIcon} height={24} />
-
+                    <img src={closeIcon} height={16} />
                 </IconButton>
                 <Form
                     onAdd={(place) => {
@@ -140,7 +141,7 @@ const GMap = (props) => {
                     position={{ lat: place.coordinates.lat, lng: place.coordinates.lng }}
                     onClick={() => {
                         props.onSelect(place);
-                        mapRef.current.panTo(place.coordinates)
+                        props.mapRef.current.panTo(place.coordinates)
                     }}
                     icon={{
                         url: '/assets/icons/location.svg',

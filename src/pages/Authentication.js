@@ -84,7 +84,7 @@ const Authentication = () => {
 
     let redirect = null;
     if (login.loginStatus !== 'disconnected') {
-        redirect = <Navigate to="/" />
+        redirect = <Navigate to="/" state={{loggedAs:login.loginStatus}}/>
     }
     return (
         <div>
